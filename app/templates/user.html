@@ -7,9 +7,13 @@
             <td>
                 <h1>User: {{ user.username }}</h1>
                 {% if user.last_seen %}<p>Last seen on: {{ user.last_seen }}</p>{% endif %}
+                {% if user == current_user %}
+                <p><a href="{{ url_for('edit_profile') }}">Edit your profile</a></p>
+                {% endif %}
             </td>
         </tr>
     </table>
+
     <hr>
     {% for equation in equations %}
         {% include '_equation.html' %}
