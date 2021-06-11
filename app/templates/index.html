@@ -1,9 +1,8 @@
 {% extends "base.html" %}
 
 {% block content %}
-        <h1>Hello, {{ current_user.username }}!</h1>
-        <p><b>Queries Run So Far:</b></p>
-        {% for equation in equations %}
-        <div><p>{{ equation.equation_body }}</p></div>
-        {% endfor %}
+    <h1>Hi, {{ current_user.username }}!</h1>
+    {% for equation in equations %}
+    <div><p>{{ equation.author.username }} says: <b>{{ equation.body }}</b></p></div>
+    {% endfor %}
 {% endblock %}

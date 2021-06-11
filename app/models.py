@@ -1,5 +1,6 @@
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
+from hashlib import md5
 
 from app import db, login
 from datetime import datetime
@@ -17,6 +18,7 @@ class User(UserMixin, db.Model):
     password_hash = db.Column(db.String(128))
     equations = db.relationship('Equation', backref='author',
                                 lazy='dynamic')  # one-to-many relationships defined on one side
+    last_seen = db.Column(db.DateTime, default=datetime.utcnow)
 
     def __repr__(self):
         return f"<User {self.username}>"
@@ -27,6 +29,10 @@ class User(UserMixin, db.Model):
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
 
+    def avatar(self, size):
+        digest = md5(self.email.lower().encode('utf-8')).hexdigest()
+        return f'https://www.gravatar.com/avatar/{digest}?d=identicon&s={size}'
+
 
 class Equation(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -36,3 +42,4 @@ class Equation(db.Model):
 
     def __repr__(self):
         return f'<Equation: {self.equation_body}'
+
