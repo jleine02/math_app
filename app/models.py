@@ -8,8 +8,7 @@ from datetime import datetime
 # this table only contains foreign keys so it is not declared as a model class
 followers = db.Table('followers',
                      db.Column('follower_id', db.Integer, db.ForeignKey('user.id')),
-                     db.Column('followed_id', db.Integer, db.ForeignKey('user.id'))
-                     )
+                     db.Column('followed_id', db.Integer, db.ForeignKey('user.id')))
 
 
 @login.user_loader
@@ -55,8 +54,9 @@ class User(UserMixin, db.Model):
         return self.followed.filter(followers.c.followed_id == user.id).count() > 0
 
     def followed_equations(self):
-        followed = Equation.query.join(followers, (followers.c.followed_id == Equation.user.user_id)).filter(
-                    followers.c.follower_id == self.id).order_by(Equation.timestamp.desc())
+        followed = Equation.query.join(
+            followers, (followers.c.followed_id == Equation.user_id)).filter(
+                    followers.c.follower_id == self.id)
         own = Equation.query.filter_by(user_id=self.id)
         return followed.union(own).order_by(Equation.timestamp.desc())
 
