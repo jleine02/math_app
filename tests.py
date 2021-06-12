@@ -1,5 +1,8 @@
 from datetime import datetime, timedelta
 import unittest
+
+from wtforms import ValidationError
+
 from app import app, db
 from app.models import User, Equation
 
@@ -12,6 +15,21 @@ class UserModelCase(unittest.TestCase):
     def tearDown(self):
         db.session.remove()
         db.drop_all()
+
+    def test_calculate(self):
+        u = User(username='karl')
+        now = datetime.utcnow()
+        operators = ['+', '-', '*', '/']
+        equations = []
+        answers = [12, 8, 20, 5]
+        for operator in operators:
+            equation = Equation(x_var=10, y_var=2, operator=operator, author=u,
+                                timestamp=now)
+            equation.calculate()
+            equations.append(equation.equation_result)
+        equation_answers = list(zip(equations, answers))
+        for test in equation_answers:
+            self.assertEqual(test[0], test[1])
 
     def test_password_hashing(self):
         u = User(username='frank')
@@ -47,7 +65,7 @@ class UserModelCase(unittest.TestCase):
         self.assertEqual(u1.followed.count(), 0)
         self.assertEqual(u2.followers.count(), 0)
 
-    def test_follow_posts(self):
+    def test_follow_equations(self):
         # create four users
         u1 = User(username='john', email='john@example.com')
         u2 = User(username='susan', email='susan@example.com')
@@ -55,17 +73,21 @@ class UserModelCase(unittest.TestCase):
         u4 = User(username='david', email='david@example.com')
         db.session.add_all([u1, u2, u3, u4])
 
-        # create four posts
+        # create four equations
         now = datetime.utcnow()
-        p1 = Equation(equation_body="10 * 10 = 100", author=u1,
+        e1 = Equation(x_var=1, y_var=1, operator='+', author=u1,
                       timestamp=now + timedelta(seconds=1))
-        p2 = Equation(equation_body="5 + 5 = 10", author=u2,
-                      timestamp=now + timedelta(seconds=4))
-        p3 = Equation(equation_body="1 + 1 = 2", author=u3,
-                      timestamp=now + timedelta(seconds=3))
-        p4 = Equation(equation_body="50 / 5 = 10", author=u4,
-                      timestamp=now + timedelta(seconds=2))
-        db.session.add_all([p1, p2, p3, p4])
+        e1.calculate()
+        e2 = Equation(x_var=1, y_var=1, operator='-', author=u2,
+                      timestamp=now + timedelta(seconds=1))
+        e2.calculate()
+        e3 = Equation(x_var=1, y_var=1, operator='*', author=u3,
+                      timestamp=now + timedelta(seconds=1))
+        e3.calculate()
+        e4 = Equation(x_var=1, y_var=1, operator='/', author=u4,
+                      timestamp=now + timedelta(seconds=1))
+        e4.calculate()
+        db.session.add_all([e1, e2, e3, e4])
         db.session.commit()
 
         # setup the followers
@@ -80,10 +102,10 @@ class UserModelCase(unittest.TestCase):
         f2 = u2.followed_equations().all()
         f3 = u3.followed_equations().all()
         f4 = u4.followed_equations().all()
-        self.assertEqual(f1, [p2, p4, p1])
-        self.assertEqual(f2, [p2, p3])
-        self.assertEqual(f3, [p3, p4])
-        self.assertEqual(f4, [p4])
+        self.assertCountEqual(f1, [e2, e4, e1])
+        self.assertCountEqual(f2, [e2, e3])
+        self.assertCountEqual(f3, [e3, e4])
+        self.assertCountEqual(f4, [e4])
 
 
 if __name__ == '__main__':
