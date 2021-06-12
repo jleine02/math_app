@@ -52,8 +52,8 @@ class EmptyForm(FlaskForm):
 
 class EquationForm(FlaskForm):
     operator_choices = ['+', '-', '*', '/']
-    x_var = DecimalField('x value', validators=[InputRequired(), NumberRange()])
-    y_var = DecimalField('y_value', validators=[InputRequired(), NumberRange()])
+    x_var = DecimalField('X Value', validators=[InputRequired(), NumberRange()])
+    y_var = DecimalField('Y Value', validators=[InputRequired(), NumberRange()])
     operator = SelectField('Operator', choices=operator_choices, validators=[DataRequired()])
     submit = SubmitField('Submit')
 

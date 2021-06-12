@@ -1,27 +1,35 @@
 {% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
 
-{% block content %}
+{% block app_content %}
     <h1>Hi, {{ current_user.username }}!</h1>
     {% if form %}
-    <form action="" method="post">
-        {{ form.hidden_tag() }}
-        <p>
-            <b>Please enter values to calculate!</b><br>
-            {{ form.x_var }} {{ form.operator }} {{ form.y_var }}
-            {% for error in form.y_var.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-        </p>
-        <p>{{ form.submit() }}</p>
-    </form>
+        <form action="" method="post" class="form" role="form">
+            {{ form.csrf_token() }}
+            <d1>
+                {{ wtf.form_field(form.x_var, class='form-control', placeholder='Enter a value for x') }}
+                {{ wtf.form_field(form.operator, class='form-control') }}
+                {{ wtf.form_field(form.y_var, class='form-control', placeholder='Enter a value for y') }}
+            </d1>
+            <p><input type=submit class="btn btn-warning btn-block"></p>
+        </form>
     {% endif %}
+    <br><br>
     {% for equation in equations %}
         {% include '_equation.html' %}
     {% endfor %}
-    {% if prev_url %}
-    <a href="{{ prev_url }}">Newer Equations</a>
-    {% endif %}
-    {% if next_url %}
-    <a href="{{ next_url }}">Older Equations</a>
-    {% endif %}
+    <nav aria-label="...">
+        <ul class="pager">
+            <li class="previous{% if not prev_url %} disabled{% endif %}">
+                <a href="{{ prev_url or '#' }}">
+                    <span aria-hidden="true">&larr;</span> Newer equations
+                </a>
+            </li>
+            <li class="next{% if not next_url %} disabled{% endif %}">
+                <a href="{{ next_url or '#' }}">
+                    Older equations <span aria-hidden="true">&rarr;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
 {% endblock %}

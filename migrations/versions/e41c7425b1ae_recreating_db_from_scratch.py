@@ -1,8 +1,8 @@
-"""retooled equation logic
+"""recreating db from scratch
 
-Revision ID: 1e25804dd8ce
+Revision ID: e41c7425b1ae
 Revises: 
-Create Date: 2021-06-11 18:50:03.874326
+Create Date: 2021-06-12 00:04:52.306148
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '1e25804dd8ce'
+revision = 'e41c7425b1ae'
 down_revision = None
 branch_labels = None
 depends_on = None
