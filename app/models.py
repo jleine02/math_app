@@ -1,10 +1,12 @@
-import jwt
-from flask_login import UserMixin
-from werkzeug.security import generate_password_hash, check_password_hash
+from datetime import datetime, time
 from hashlib import md5
 
-from app import db, login, app
-from datetime import datetime, time
+import jwt
+from flask import current_app
+from flask_login import UserMixin
+from werkzeug.security import generate_password_hash, check_password_hash
+
+from app import db, login
 
 # this table only contains foreign keys so it is not declared as a model class
 followers = db.Table('followers',
@@ -62,13 +64,13 @@ class User(UserMixin, db.Model):
         return followed.union(own).order_by(Equation.timestamp.desc())
 
     def get_reset_password_token(self, expires_in=600):
-        return jwt.encode({'reset_password': self.id, 'exp': time() + expires_in},
-                          app.config['SECRET KEY'], algorithm='HS256')
+        return jwt.encode({'reset_password': self.id, 'exp': (time() + expires_in)},
+                          current_app.config['SECRET KEY'], algorithm='HS256')
 
     @staticmethod
     def verify_reset_password_token(token):
         try:
-            id = jwt.decode(token, app.config['SECRET_KEY'],
+            id = jwt.decode(token, current_app.config['SECRET_KEY'],
                             algorithms=['HS256'])['reset_password']
         except jwt.exceptions:
             return
@@ -101,4 +103,4 @@ class Equation(db.Model):
         elif self.operator == '/':
             self.equation_result = self.x_var / self.y_var
 
-        self.equation_str = f'{self.x_var} {self.operator} {self.y_var} = {self.equation_result}'
+        self.equation_str = f'{self.x_var:,.2f} {self.operator} {self.y_var:,.2f} = {self.equation_result:,.2f}'

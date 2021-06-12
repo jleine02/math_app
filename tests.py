@@ -1,20 +1,27 @@
-from datetime import datetime, timedelta
 import unittest
+from datetime import datetime, timedelta
 
-from wtforms import ValidationError
-
-from app import app, db
+from app import db, create_app
 from app.models import User, Equation
+from config import Config
+
+
+class TestConfig(Config):
+    TESTING = True
+    SQLALCHEMY_DATABASE_URI = 'sqlite://'
 
 
 class UserModelCase(unittest.TestCase):
     def setUp(self):
-        app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite://'
+        self.app = create_app(TestConfig)
+        self.app_context = self.app.app_context()
+        self.app_context.push()
         db.create_all()
 
     def tearDown(self):
         db.session.remove()
         db.drop_all()
+        self.app_context.pop()
 
     def test_equation_stored(self):
         u = User(username='karl')

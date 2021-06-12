@@ -1,15 +1,15 @@
 <table class="table table-hover">
     <tr>
         <td width="70px">
-            <a href="{{ url_for('user', username=equation.author.username) }}">
+            <a href="{{ url_for('main.user', username=equation.author.username) }}">
                 <img src="{{ equation.author.avatar(70) }}"/>
             </a>
         </td>
         <td>
-            <a href="{{ url_for('user', username=equation.author.username) }}">
+            <a href="{{ url_for('main.user', username=equation.author.username) }}">
                 {{ equation.author.username }}
             </a>
-            calculated:
+            calculated {{ moment(equation.timestamp).fromNow() }}:
             <br>
             {{ equation.equation_str }}
         </td>
