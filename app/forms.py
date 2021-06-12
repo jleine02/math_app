@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField
-from wtforms.validators import DataRequired, EqualTo, ValidationError, Email
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, DecimalField, SelectField
+from wtforms.validators import DataRequired, EqualTo, ValidationError, Email, NumberRange, InputRequired
 from app.models import User
 
 
@@ -48,3 +48,15 @@ class EditProfileForm(FlaskForm):
 
 class EmptyForm(FlaskForm):
     submit = SubmitField('Submit')
+
+
+class EquationForm(FlaskForm):
+    operator_choices = ['+', '-', '*', '/']
+    x_var = DecimalField('x value', validators=[InputRequired(), NumberRange()])
+    y_var = DecimalField('y_value', validators=[InputRequired(), NumberRange()])
+    operator = SelectField('Operator', choices=operator_choices, validators=[DataRequired()])
+    submit = SubmitField('Submit')
+
+    def validate_y_var(self, y_var):
+        if self.operator.data == '/' and y_var.data == 0:
+            raise ValidationError('Cannot divide by zero! Please enter a different divisor!')

@@ -2,7 +2,18 @@
 
 {% block content %}
     <h1>Hi, {{ current_user.username }}!</h1>
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+        <p>
+            <b>Please enter values to calculate!</b><br>
+            {{ form.x_var }} {{ form.operator }} {{ form.y_var }}
+            {% for error in form.y_var.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>{{ form.submit() }}</p>
+    </form>
     {% for equation in equations %}
-    <div><p>{{ equation.author.username }} says: <b>{{ equation.body }}</b></p></div>
+    <div><p>{{ equation.author.username }} calculated: <b>{{ equation.equation_str }}</b></p></div>
     {% endfor %}
 {% endblock %}

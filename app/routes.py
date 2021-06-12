@@ -5,8 +5,8 @@ from flask_login import current_user, login_user, logout_user, login_required
 from werkzeug.urls import url_parse
 
 from app import app, db
-from app.forms import LoginForm, RegistrationForm, EditProfileForm, EmptyForm
-from app.models import User
+from app.forms import LoginForm, RegistrationForm, EditProfileForm, EmptyForm, EquationForm
+from app.models import User, Equation
 
 
 @app.before_request
@@ -16,15 +16,21 @@ def before_request():
         db.session.commit()
 
 
-@app.route('/')
-@app.route('/index')
+@app.route('/', methods=['GET', 'POST'])
+@app.route('/index', methods=['GET', 'POST'])
 @login_required
 def index():
-    equations = [
-        {"author": {'username': 'jake'}, "body": "1 + 1 = 2"},
-        {"author": {'username': 'jake'}, "body": "1 - 1 = 0"}
-    ]
-    return render_template('index.html', title='Home', equations=equations)
+    form = EquationForm()
+    if form.validate_on_submit():
+        equation = Equation(x_var=form.x_var.data, y_var=form.y_var.data, operator=form.operator.data,
+                            author=current_user)
+        equation.calculate()
+        db.session.add(equation)
+        db.session.commit()
+        flash('Equation has been submitted!')
+        return redirect(url_for('index'))
+    equations = current_user.followed_equations().all()
+    return render_template('index.html', title='Home', form=form, equations=equations)
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -130,4 +136,3 @@ def unfollow(username):
         return redirect(url_for('user', username=username))
     else:
         return redirect(url_for('index'))
-   

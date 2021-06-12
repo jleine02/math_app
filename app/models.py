@@ -56,16 +56,32 @@ class User(UserMixin, db.Model):
     def followed_equations(self):
         followed = Equation.query.join(
             followers, (followers.c.followed_id == Equation.user_id)).filter(
-                    followers.c.follower_id == self.id)
+            followers.c.follower_id == self.id)
         own = Equation.query.filter_by(user_id=self.id)
         return followed.union(own).order_by(Equation.timestamp.desc())
 
 
 class Equation(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    equation_body = db.Column(db.String())
+    x_var = db.Column(db.Float)
+    y_var = db.Column(db.Float)
+    operator = db.Column(db.String())
+    equation_result = db.Column(db.Float)
+    equation_str = db.Column(db.String())
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
     def __repr__(self):
-        return f'<Equation: {self.equation_body}'
+        return f'<Equation: {self.equation_str}'
+
+    def calculate(self):
+        if self.operator == '+':
+            self.equation_result = self.x_var + self.y_var
+        elif self.operator == '-':
+            self.equation_result = self.x_var - self.y_var
+        elif self.operator == '*':
+            self.equation_result = self.x_var * self.y_var
+        elif self.operator == '/':
+            self.equation_result = self.x_var / self.y_var
+
+        self.equation_str = f'{self.x_var} {self.operator} {self.y_var} = {self.equation_result}'
