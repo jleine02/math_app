@@ -2,6 +2,7 @@
 
 {% block content %}
     <h1>Hi, {{ current_user.username }}!</h1>
+    {% if form %}
     <form action="" method="post">
         {{ form.hidden_tag() }}
         <p>
@@ -13,7 +14,14 @@
         </p>
         <p>{{ form.submit() }}</p>
     </form>
+    {% endif %}
     {% for equation in equations %}
-    <div><p>{{ equation.author.username }} calculated: <b>{{ equation.equation_str }}</b></p></div>
+        {% include '_equation.html' %}
     {% endfor %}
+    {% if prev_url %}
+    <a href="{{ prev_url }}">Newer Equations</a>
+    {% endif %}
+    {% if next_url %}
+    <a href="{{ next_url }}">Older Equations</a>
+    {% endif %}
 {% endblock %}

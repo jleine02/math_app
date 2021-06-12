@@ -33,4 +33,10 @@
     {% for equation in equations %}
         {% include '_equation.html' %}
     {% endfor %}
+    {% if prev_url %}
+    <a href="{{ prev_url }}">Newer Equations</a>
+    {% endif %}
+    {% if next_url %}
+    <a href="{{ next_url }}">Older Equations</a>
+    {% endif %}
 {% endblock %}
