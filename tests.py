@@ -16,6 +16,21 @@ class UserModelCase(unittest.TestCase):
         db.session.remove()
         db.drop_all()
 
+    def test_equation_stored(self):
+        u = User(username='karl')
+        now = datetime.utcnow()
+        e1 = Equation(x_var=10, y_var=2, operator='*', author=u,
+                      timestamp=now)
+        e1.calculate()
+        db.session.add(e1)
+        e2 = Equation(x_var=10, y_var=2, operator='/', author=u,
+                      timestamp=now)
+        e2.calculate()
+        db.session.add(e2)
+        db.session.commit()
+        equations = Equation.query.filter_by(user_id=u.id).all()
+        self.assertEqual(equations, [e1, e2])
+
     def test_calculate(self):
         u = User(username='karl')
         now = datetime.utcnow()

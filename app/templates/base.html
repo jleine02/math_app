@@ -1,14 +1,14 @@
 <html>
     <head>
         {% if title %}
-        <title>{{ title }} - Math App</title>
+        <title>{{ title }} - MathApp</title>
         {% else %}
-        <title>Welcome to Math App!</title>
+        <title>Welcome to MathApp!</title>
         {% endif %}
     </head>
     <body>
         <div>
-            Math App:
+            MathApp:
             <a href="{{ url_for('index') }}">Home</a>
             {% if current_user.is_anonymous %}
             <a href="{{ url_for('login') }}">Login</a>

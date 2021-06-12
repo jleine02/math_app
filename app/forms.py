@@ -60,3 +60,15 @@ class EquationForm(FlaskForm):
     def validate_y_var(self, y_var):
         if self.operator.data == '/' and y_var.data == 0:
             raise ValidationError('Cannot divide by zero! Please enter a different divisor!')
+
+
+class ResetPasswordRequestForm(FlaskForm):
+    email = StringField('Email', validators=[DataRequired(), Email()])
+    submit = SubmitField('Request Password Reset')
+
+
+class ResetPasswordForm(FlaskForm):
+    password = PasswordField('Password', validators=[DataRequired()])
+    password_two = PasswordField(
+        'Repeat Password', validators=[DataRequired(), EqualTo('password')])
+    submit = SubmitField('Request Password Reset')
