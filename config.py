@@ -19,3 +19,4 @@ class Config(object):
     EQUATIONS_PER_PAGE = 15
     LANGUAGES = ['en', 'es']
     ELASTICSEARCH_URL = os.environ.get('ELASTICSEARCH_URL')
+    POSTS_PER_PAGE = 10

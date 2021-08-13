@@ -1,0 +1,122 @@
+2021-08-12 22:32:33,141 INFO: MathApp [in /home/jacob/PersonalProjects/math_app/app/__init__.py:73]
+2021-08-12 22:32:40,040 INFO: MathApp [in /home/jacob/PersonalProjects/math_app/app/__init__.py:73]
+2021-08-12 22:42:33,753 INFO: MathApp [in /home/jacob/PersonalProjects/math_app/app/__init__.py:73]
+2021-08-12 22:48:15,670 INFO: MathApp [in /home/jacob/PersonalProjects/math_app/app/__init__.py:73]
+2021-08-12 22:48:19,243 ERROR: Exception on /index [GET] [in /home/jacob/PersonalProjects/math_app/venv/lib/python3.8/site-packages/flask/app.py:1454]
+Traceback (most recent call last):
+  File "/home/jacob/PersonalProjects/math_app/venv/lib/python3.8/site-packages/flask/app.py", line 2070, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/jacob/PersonalProjects/math_app/venv/lib/python3.8/site-packages/flask/app.py", line 1515, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/jacob/PersonalProjects/math_app/venv/lib/python3.8/site-packages/flask/app.py", line 1513, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/jacob/PersonalProjects/math_app/venv/lib/python3.8/site-packages/flask/app.py", line 1499, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/home/jacob/PersonalProjects/math_app/venv/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "/home/jacob/PersonalProjects/math_app/app/main/routes.py", line 36, in index
+    return render_template('index.html', title='Home', form=form, equations=equations.items, next_url=next_url,
+  File "/home/jacob/PersonalProjects/math_app/venv/lib/python3.8/site-packages/flask/templating.py", line 147, in render_template
+    return _render(
+  File "/home/jacob/PersonalProjects/math_app/venv/lib/python3.8/site-packages/flask/templating.py", line 128, in _render
+    rv = template.render(context)
+  File "/home/jacob/PersonalProjects/math_app/venv/lib/python3.8/site-packages/jinja2/environment.py", line 1304, in render
+    self.environment.handle_exception()
+  File "/home/jacob/PersonalProjects/math_app/venv/lib/python3.8/site-packages/jinja2/environment.py", line 925, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/home/jacob/PersonalProjects/math_app/app/templates/index.html", line 2, in top-level template code
+    {% import 'bootstrap/wtf.html' as wtf %}
+  File "/home/jacob/PersonalProjects/math_app/app/templates/base.html", line 1, in top-level template code
+    {% extends 'bootstrap/base.html' %}
+  File "/home/jacob/PersonalProjects/math_app/venv/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 1, in top-level template code
+    {% block doc -%}
+  File "/home/jacob/PersonalProjects/math_app/venv/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 4, in block 'doc'
+    {%- block html %}
+  File "/home/jacob/PersonalProjects/math_app/venv/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 20, in block 'html'
+    {% block body -%}
+  File "/home/jacob/PersonalProjects/math_app/venv/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 21, in block 'body'
+    {% block navbar %}
+  File "/home/jacob/PersonalProjects/math_app/app/templates/base.html", line 36, in block 'navbar'
+    {{ _('Messages') }}
+  File "/home/jacob/PersonalProjects/math_app/venv/lib/python3.8/site-packages/jinja2/utils.py", line 84, in from_obj
+    if hasattr(obj, "jinja_pass_arg"):
+jinja2.exceptions.UndefinedError: '_' is undefined
+2021-08-12 22:49:26,728 INFO: MathApp [in /home/jacob/PersonalProjects/math_app/app/__init__.py:73]
+2021-08-12 22:49:38,201 ERROR: Exception on /messages [GET] [in /home/jacob/PersonalProjects/math_app/venv/lib/python3.8/site-packages/flask/app.py:1454]
+Traceback (most recent call last):
+  File "/home/jacob/PersonalProjects/math_app/venv/lib/python3.8/site-packages/flask/app.py", line 2070, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/jacob/PersonalProjects/math_app/venv/lib/python3.8/site-packages/flask/app.py", line 1515, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/jacob/PersonalProjects/math_app/venv/lib/python3.8/site-packages/flask/app.py", line 1513, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/jacob/PersonalProjects/math_app/venv/lib/python3.8/site-packages/flask/app.py", line 1499, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/home/jacob/PersonalProjects/math_app/venv/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "/home/jacob/PersonalProjects/math_app/app/main/routes.py", line 145, in messages
+    page, current_app.config['POSTS_PER_PAGE'], False)
+KeyError: 'POSTS_PER_PAGE'
+2021-08-12 22:53:11,164 ERROR: Exception on /messages [GET] [in /home/jacob/PersonalProjects/math_app/venv/lib/python3.8/site-packages/flask/app.py:1454]
+Traceback (most recent call last):
+  File "/home/jacob/PersonalProjects/math_app/venv/lib/python3.8/site-packages/flask/app.py", line 2070, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/jacob/PersonalProjects/math_app/venv/lib/python3.8/site-packages/flask/app.py", line 1515, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/jacob/PersonalProjects/math_app/venv/lib/python3.8/site-packages/flask/app.py", line 1513, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/jacob/PersonalProjects/math_app/venv/lib/python3.8/site-packages/flask/app.py", line 1499, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/home/jacob/PersonalProjects/math_app/venv/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "/home/jacob/PersonalProjects/math_app/app/main/routes.py", line 145, in messages
+    page, current_app.config['POSTS_PER_PAGE'], False)
+KeyError: 'POSTS_PER_PAGE'
+2021-08-12 22:54:07,231 ERROR: Exception on /messages [GET] [in /home/jacob/PersonalProjects/math_app/venv/lib/python3.8/site-packages/flask/app.py:1454]
+Traceback (most recent call last):
+  File "/home/jacob/PersonalProjects/math_app/venv/lib/python3.8/site-packages/flask/app.py", line 2070, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/jacob/PersonalProjects/math_app/venv/lib/python3.8/site-packages/flask/app.py", line 1515, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/jacob/PersonalProjects/math_app/venv/lib/python3.8/site-packages/flask/app.py", line 1513, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/jacob/PersonalProjects/math_app/venv/lib/python3.8/site-packages/flask/app.py", line 1499, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/home/jacob/PersonalProjects/math_app/venv/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "/home/jacob/PersonalProjects/math_app/app/main/routes.py", line 145, in messages
+    page, current_app.config['POSTS_PER_PAGE'], False)
+KeyError: 'POSTS_PER_PAGE'
+2021-08-12 23:06:45,893 INFO: MathApp [in /home/jacob/PersonalProjects/math_app/app/__init__.py:73]
+2021-08-12 23:06:52,920 INFO: MathApp [in /home/jacob/PersonalProjects/math_app/app/__init__.py:73]
+2021-08-12 23:07:05,283 ERROR: Exception on /messages [GET] [in /home/jacob/PersonalProjects/math_app/venv/lib/python3.8/site-packages/flask/app.py:1454]
+Traceback (most recent call last):
+  File "/home/jacob/PersonalProjects/math_app/venv/lib/python3.8/site-packages/flask/app.py", line 2070, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/jacob/PersonalProjects/math_app/venv/lib/python3.8/site-packages/flask/app.py", line 1515, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/jacob/PersonalProjects/math_app/venv/lib/python3.8/site-packages/flask/app.py", line 1513, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/jacob/PersonalProjects/math_app/venv/lib/python3.8/site-packages/flask/app.py", line 1499, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/home/jacob/PersonalProjects/math_app/venv/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "/home/jacob/PersonalProjects/math_app/app/main/routes.py", line 145, in messages
+    page, current_app.config['POSTS_PER_PAGE'], False)
+KeyError: 'POSTS_PER_PAGE'
+2021-08-12 23:21:03,395 ERROR: Exception on /messages [GET] [in /home/jacob/PersonalProjects/math_app/venv/lib/python3.8/site-packages/flask/app.py:1454]
+Traceback (most recent call last):
+  File "/home/jacob/PersonalProjects/math_app/venv/lib/python3.8/site-packages/flask/app.py", line 2070, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/jacob/PersonalProjects/math_app/venv/lib/python3.8/site-packages/flask/app.py", line 1515, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/jacob/PersonalProjects/math_app/venv/lib/python3.8/site-packages/flask/app.py", line 1513, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/jacob/PersonalProjects/math_app/venv/lib/python3.8/site-packages/flask/app.py", line 1499, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/home/jacob/PersonalProjects/math_app/venv/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "/home/jacob/PersonalProjects/math_app/app/main/routes.py", line 145, in messages
+    messages = current_user.messages_received.order_by(
+KeyError: 'POSTS_PER_PAGE'
+2021-08-12 23:31:12,848 INFO: MathApp [in /home/jacob/PersonalProjects/math_app/app/__init__.py:73]

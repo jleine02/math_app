@@ -1,8 +1,14 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, DecimalField, SelectField
-from wtforms.validators import DataRequired, ValidationError, NumberRange, InputRequired
+from wtforms import StringField, SubmitField, DecimalField, SelectField, TextAreaField
+from wtforms.validators import DataRequired, ValidationError, NumberRange, InputRequired, Length
 
 from app.models import User
+
+
+class MessageForm(FlaskForm):
+    message = TextAreaField('Message', validators=[
+        DataRequired(), Length(min=0, max=140)])
+    submit = SubmitField('Submit')
 
 
 class EditProfileForm(FlaskForm):

@@ -1,0 +1,118 @@
+2021-08-12 23:31:15,170 ERROR: Exception on / [GET] [in /home/jacob/PersonalProjects/math_app/venv/lib/python3.8/site-packages/flask/app.py:1454]
+Traceback (most recent call last):
+  File "/home/jacob/PersonalProjects/math_app/venv/lib/python3.8/site-packages/flask/app.py", line 2070, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/jacob/PersonalProjects/math_app/venv/lib/python3.8/site-packages/flask/app.py", line 1515, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/jacob/PersonalProjects/math_app/venv/lib/python3.8/site-packages/flask/app.py", line 1513, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/jacob/PersonalProjects/math_app/venv/lib/python3.8/site-packages/flask/app.py", line 1499, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/home/jacob/PersonalProjects/math_app/venv/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "/home/jacob/PersonalProjects/math_app/app/main/routes.py", line 36, in index
+    return render_template('index.html', title='Home', form=form, equations=equations.items, next_url=next_url,
+  File "/home/jacob/PersonalProjects/math_app/venv/lib/python3.8/site-packages/flask/templating.py", line 147, in render_template
+    return _render(
+  File "/home/jacob/PersonalProjects/math_app/venv/lib/python3.8/site-packages/flask/templating.py", line 128, in _render
+    rv = template.render(context)
+  File "/home/jacob/PersonalProjects/math_app/venv/lib/python3.8/site-packages/jinja2/environment.py", line 1304, in render
+    self.environment.handle_exception()
+  File "/home/jacob/PersonalProjects/math_app/venv/lib/python3.8/site-packages/jinja2/environment.py", line 925, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/home/jacob/PersonalProjects/math_app/app/templates/index.html", line 2, in top-level template code
+    {% import 'bootstrap/wtf.html' as wtf %}
+  File "/home/jacob/PersonalProjects/math_app/app/templates/base.html", line 1, in top-level template code
+    {% extends 'bootstrap/base.html' %}
+  File "/home/jacob/PersonalProjects/math_app/venv/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 1, in top-level template code
+    {% block doc -%}
+  File "/home/jacob/PersonalProjects/math_app/venv/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 4, in block 'doc'
+    {%- block html %}
+  File "/home/jacob/PersonalProjects/math_app/venv/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 20, in block 'html'
+    {% block body -%}
+  File "/home/jacob/PersonalProjects/math_app/venv/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 26, in block 'body'
+    {% block scripts %}
+  File "/home/jacob/PersonalProjects/math_app/app/templates/base.html", line 75, in block 'scripts'
+    {% if current_user.is_authenticated() %}
+TypeError: 'bool' object is not callable
+2021-08-12 23:31:20,426 ERROR: Exception on / [GET] [in /home/jacob/PersonalProjects/math_app/venv/lib/python3.8/site-packages/flask/app.py:1454]
+Traceback (most recent call last):
+  File "/home/jacob/PersonalProjects/math_app/venv/lib/python3.8/site-packages/flask/app.py", line 2070, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/jacob/PersonalProjects/math_app/venv/lib/python3.8/site-packages/flask/app.py", line 1515, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/jacob/PersonalProjects/math_app/venv/lib/python3.8/site-packages/flask/app.py", line 1513, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/jacob/PersonalProjects/math_app/venv/lib/python3.8/site-packages/flask/app.py", line 1499, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/home/jacob/PersonalProjects/math_app/venv/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "/home/jacob/PersonalProjects/math_app/app/main/routes.py", line 36, in index
+    return render_template('index.html', title='Home', form=form, equations=equations.items, next_url=next_url,
+  File "/home/jacob/PersonalProjects/math_app/venv/lib/python3.8/site-packages/flask/templating.py", line 147, in render_template
+    return _render(
+  File "/home/jacob/PersonalProjects/math_app/venv/lib/python3.8/site-packages/flask/templating.py", line 128, in _render
+    rv = template.render(context)
+  File "/home/jacob/PersonalProjects/math_app/venv/lib/python3.8/site-packages/jinja2/environment.py", line 1304, in render
+    self.environment.handle_exception()
+  File "/home/jacob/PersonalProjects/math_app/venv/lib/python3.8/site-packages/jinja2/environment.py", line 925, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/home/jacob/PersonalProjects/math_app/app/templates/index.html", line 2, in top-level template code
+    {% import 'bootstrap/wtf.html' as wtf %}
+  File "/home/jacob/PersonalProjects/math_app/app/templates/base.html", line 1, in top-level template code
+    {% extends 'bootstrap/base.html' %}
+  File "/home/jacob/PersonalProjects/math_app/venv/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 1, in top-level template code
+    {% block doc -%}
+  File "/home/jacob/PersonalProjects/math_app/venv/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 4, in block 'doc'
+    {%- block html %}
+  File "/home/jacob/PersonalProjects/math_app/venv/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 20, in block 'html'
+    {% block body -%}
+  File "/home/jacob/PersonalProjects/math_app/venv/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 26, in block 'body'
+    {% block scripts %}
+  File "/home/jacob/PersonalProjects/math_app/app/templates/base.html", line 75, in block 'scripts'
+    {% if current_user.is_authenticated() %}
+TypeError: 'bool' object is not callable
+2021-08-13 00:02:12,690 INFO: MathApp [in /home/jacob/PersonalProjects/math_app/app/__init__.py:73]
+2021-08-13 00:02:16,907 ERROR: Exception on / [GET] [in /home/jacob/PersonalProjects/math_app/venv/lib/python3.8/site-packages/flask/app.py:1454]
+Traceback (most recent call last):
+  File "/home/jacob/PersonalProjects/math_app/venv/lib/python3.8/site-packages/flask/app.py", line 2070, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/home/jacob/PersonalProjects/math_app/venv/lib/python3.8/site-packages/flask/app.py", line 1515, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/home/jacob/PersonalProjects/math_app/venv/lib/python3.8/site-packages/flask/app.py", line 1513, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/home/jacob/PersonalProjects/math_app/venv/lib/python3.8/site-packages/flask/app.py", line 1499, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**req.view_args)
+  File "/home/jacob/PersonalProjects/math_app/venv/lib/python3.8/site-packages/flask_login/utils.py", line 272, in decorated_view
+    return func(*args, **kwargs)
+  File "/home/jacob/PersonalProjects/math_app/app/main/routes.py", line 36, in index
+    return render_template('index.html', title='Home', form=form, equations=equations.items, next_url=next_url,
+  File "/home/jacob/PersonalProjects/math_app/venv/lib/python3.8/site-packages/flask/templating.py", line 147, in render_template
+    return _render(
+  File "/home/jacob/PersonalProjects/math_app/venv/lib/python3.8/site-packages/flask/templating.py", line 128, in _render
+    rv = template.render(context)
+  File "/home/jacob/PersonalProjects/math_app/venv/lib/python3.8/site-packages/jinja2/environment.py", line 1304, in render
+    self.environment.handle_exception()
+  File "/home/jacob/PersonalProjects/math_app/venv/lib/python3.8/site-packages/jinja2/environment.py", line 925, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "/home/jacob/PersonalProjects/math_app/app/templates/index.html", line 2, in top-level template code
+    {% import 'bootstrap/wtf.html' as wtf %}
+  File "/home/jacob/PersonalProjects/math_app/app/templates/base.html", line 1, in top-level template code
+    {% extends 'bootstrap/base.html' %}
+  File "/home/jacob/PersonalProjects/math_app/venv/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 1, in top-level template code
+    {% block doc -%}
+  File "/home/jacob/PersonalProjects/math_app/venv/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 4, in block 'doc'
+    {%- block html %}
+  File "/home/jacob/PersonalProjects/math_app/venv/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 20, in block 'html'
+    {% block body -%}
+  File "/home/jacob/PersonalProjects/math_app/venv/lib/python3.8/site-packages/flask_bootstrap/templates/bootstrap/base.html", line 23, in block 'body'
+    {% block content -%}
+  File "/home/jacob/PersonalProjects/math_app/app/templates/base.html", line 63, in block 'content'
+    {% block app_content %} {% endblock %}
+  File "/home/jacob/PersonalProjects/math_app/app/templates/index.html", line 19, in block 'app_content'
+    {% include '_equation.html' %}
+  File "/home/jacob/PersonalProjects/math_app/app/templates/_equation.html", line 14, in top-level template code
+    {{ _('%(username)s said %(when)s',
+  File "/home/jacob/PersonalProjects/math_app/venv/lib/python3.8/site-packages/jinja2/utils.py", line 84, in from_obj
+    if hasattr(obj, "jinja_pass_arg"):
+jinja2.exceptions.UndefinedError: '_' is undefined

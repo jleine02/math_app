@@ -3,7 +3,7 @@ import os
 from logging.handlers import SMTPHandler, RotatingFileHandler
 
 from elasticsearch import Elasticsearch
-from flask import Flask
+from flask import Flask, request, current_app
 from flask_bootstrap import Bootstrap
 from flask_login import LoginManager
 from flask_mail import Mail
@@ -63,7 +63,7 @@ def create_app(config_class=Config):
 
         if os.path.exists('logs') is False:
             os.mkdir('logs')
-        file_handler = RotatingFileHandler('logs/mathapp.log', maxBytes=10240, backupCount=10)
+        file_handler = RotatingFileHandler('logs/math_app.log', maxBytes=10240, backupCount=10)
         file_handler.setFormatter(
             logging.Formatter('%(asctime)s %(levelname)s: %(message)s [in %(pathname)s:%(lineno)d]'))
         file_handler.setLevel(logging.INFO)
