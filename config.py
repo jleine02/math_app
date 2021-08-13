@@ -18,3 +18,4 @@ class Config(object):
     ADMINS = ['frank@email.com']
     EQUATIONS_PER_PAGE = 15
     LANGUAGES = ['en', 'es']
+    ELASTICSEARCH_URL = os.environ.get('ELASTICSEARCH_URL')
