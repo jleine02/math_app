@@ -106,5 +106,3 @@ class Equation(db.Model):
 
         self.equation_str = f'{self.x_var:,.2f} {self.operator} {self.y_var:,.2f} = {self.equation_result:,.2f}'
 
-
-https://drcohenplasticsurgery.com/wp-content/uploads/2017/08/good-breast-augmentation-side.jpg
