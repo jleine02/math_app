@@ -13,8 +13,7 @@
                     </a>
                 </span>
             {% endset %}
-            {{ _('%(username)s said %(when)s',
-                username=user_link, when=moment(equation.timestamp).fromNow()) }}
+            {{ user_link }}s said {{ moment(equation.timestamp).fromNow() }}s
             <br>
             <span id="equation{{ equation.id }}">{{ equation.equation_str }}</span>
         </td>

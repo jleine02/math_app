@@ -47,7 +47,7 @@ def user(username):
     next_url = url_for('main.user', page=equations.next_num) if equations.has_next else None
     prev_url = url_for('main.user', page=equations.prev_num) if equations.has_prev else None
     form = EmptyForm()
-    return render_template('user.html', title='Home', user=user, equations=equations.items, next_url=next_url,
+    return render_template('user.html', user=user, equations=equations.items, next_url=next_url,
                            prev_url=prev_url, form=form)
 
 
@@ -129,7 +129,7 @@ def send_message(recipient):
         db.session.add(msg)
         user.add_notification('unread_message_count', user.new_messages())
         db.session.commit()
-        flash(f'Your message has been sent.')
+        flash('Your message has been sent.')
         return redirect(url_for('main.user', username=recipient))
     return render_template('send_message.html', title='Send Message',
                            form=form, recipient=recipient)
